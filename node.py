@@ -1,35 +1,75 @@
+# TODO: Comment correctly the class
+
 class Node:
-    def __init__(self, value: any = None, parent: Node = None):
+    '''
+    This class is a representation of a stack node.
+    It stores an object to make the stack generic and a pointer to the parent node
+
+    Attributes:
+        __object: Object with more information stored by the node
+        __parent: Pointer to the parent node
+    '''
+
+    def __init__(self, object: any = None, parent: 'Node' = None):
         '''
-        Constructs a new node with a value and a pointer to a parent
+        Constructs a node
 
         Args:
-            value: The object to be stored by the node
+            object: The object to be stored
             parent: Pointer to the parent node
         '''
-        self._value = value
-        self._parent = parent
 
-    def set_value(self, value: any) -> None:
+        self.__object = object
+        self.__parent = parent
+
+    def set_object(self, object: any) -> None:
         '''
-        Sets the node value
+        Sets the node stored object
 
         Args:
-            value: The object to be stored by the node
+            object: The new object to be stored
         
         Raises:
-            TypeError: If value is None it can't be setted
+            TypeError: If `object` is None it can't be setted
         '''
-        if value is None:
-            raise TypeError('None is not a valid type for the value of the node')
-        
-        self._value = value
 
-    def get_value(self) -> any:
+        if not object:
+            raise ValueError('No object given to store')
+        
+        self.__object = object  # Sets the stored object
+
+    def get_object(self) -> any:
         '''
-        Gets the object stored on the node
+        Gets the object stored
 
         Returns:
-            The value of the node
+            The object of the node
         '''
-        return self._value
+
+        return self.__object
+    
+    def set_parent(self, parent: 'Node') -> None:
+        '''
+        Sets the parent of the node
+
+        Args:
+            parent: Parent node
+        '''
+
+        self.__parent = parent  # Sets the parent
+    
+    def get_parent(self) -> 'Node':
+        '''
+        Gets the parent of the node
+
+        Returns:
+            The parent node 
+        '''
+        return self.__parent
+
+    def __repr__(self) -> str:
+        '''
+        Returns a string representation of the node.
+        Format -> Node: representation of the object stored
+        '''
+        return f'Node: {str(self.__object)}'
