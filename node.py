@@ -33,4 +33,3 @@ class Node:
             The value of the node
         '''
         return self._value
-    
